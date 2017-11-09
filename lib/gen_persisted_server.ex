@@ -83,6 +83,7 @@ defmodule GenPersistedServer do
         end
 
         defp put_state(id, new_state) do
+          new_state = apply(@original, :sanitize_state, [new_state])
           apply(@adapter, :put, [id, new_state])
         end
 
@@ -187,6 +188,8 @@ defmodule GenPersistedServer do
       def init(args) do
         {:ok, args}
       end
+
+      def sanitize_state(state), do: state
 
       def handle_call(_msg, _from, state),
         do: :missing

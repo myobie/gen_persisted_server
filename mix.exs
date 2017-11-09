@@ -19,7 +19,7 @@ defmodule GenPersistedServer.Mixfile do
 
   defp deps do
     [
-      {:poison, "~> 3.1"}
+      {:poison, "~> 3.1", only: [:test]}
     ]
   end
 end
